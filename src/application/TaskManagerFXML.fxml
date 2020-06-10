@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="387.0" prefWidth="503.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="503.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Processes">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="503.0" />
+            </content>
+          </Tab>
+          <Tab text="Performance">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0" />
+            </content>
+          </Tab>
+            <Tab text="App History">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0" />
+               </content>
+            </Tab>
+            <Tab text="Services">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
