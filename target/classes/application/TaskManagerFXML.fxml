@@ -6,17 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="387.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TaskManagerFXMLController">
+<AnchorPane prefHeight="481.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SystemInfoController">
    <children>
-      <TabPane prefHeight="200.0" prefWidth="503.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="594.0" prefWidth="869.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Processes">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="503.0">
-                     <children>
-                        <Text id="Teste" layoutX="31.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DIJSADBAI" />
-                     </children>
-                  </AnchorPane>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="503.0" />
             </content>
           </Tab>
           <Tab text="Performance">
@@ -36,10 +32,28 @@
             </Tab>
             <Tab text="System Info">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0">
+                  <AnchorPane fx:id="SystemInfoAP" minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0">
                      <children>
-                        <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OS Manufacture:" />
-                        <Text fx:id="osManufacturerTX" layoutX="131.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+                        <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OS Manufacturer:" />
+                        <Text fx:id="ManufacturerTX" layoutX="135.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+                        <Text layoutX="523.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family:" />
+                        <Text fx:id="FamilyTX" layoutX="575.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+                        <Text fx:id="MemoryTX" layoutX="12.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="memory" />
+                        <Text layoutX="12.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory:" />
+                        <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Store:" />
+                        <Text fx:id="FileStoreTX" layoutX="14.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="filestore" />
+                        <Text layoutX="261.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version:" />
+                        <Text fx:id="VersionTX" layoutX="317.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+                        <Text layoutX="14.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC Manufacturer:" />
+                        <Text layoutX="360.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Model: " />
+                        <Text layoutX="575.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serial Number: " />
+                        <Text fx:id="PCManufacturerTX" layoutX="134.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+                        <Text fx:id="PCModelTX" layoutX="410.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+                        <Text fx:id="PCSerialNumberTX" layoutX="677.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+                        <Text fx:id="GraphicCardTX" layoutX="12.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="graphiccard" />
+                        <Text layoutX="12.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graphic Card:" />
+                        <Text layoutX="12.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Processor:" />
+                        <Text fx:id="ProcessorTX" layoutX="12.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="processor" />
                      </children>
                   </AnchorPane>
                </content>
