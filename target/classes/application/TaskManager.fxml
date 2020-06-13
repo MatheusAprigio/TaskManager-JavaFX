@@ -10,21 +10,37 @@
 	<children>
 		<TabPane prefHeight="594.0" prefWidth="869.0">
 			<tabs>
-				<Tab text="Processes details">
+            <Tab text="Services">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0">
+                     <children>
+                        <TableView fx:id="serviceTBL" layoutY="-1.0" prefHeight="514.0" prefWidth="869.0">
+                           <columns>
+                              <TableColumn fx:id="serviceNameCLN" prefWidth="316.0" text="Name" />
+                              <TableColumn fx:id="serviceStateCLN" prefWidth="148.0" text="State" />
+                              <TableColumn fx:id="serviceIdCLN" prefWidth="130.0" text="PID" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="updateServiceBTN" layoutY="513.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Update" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+				<Tab text="Processes ">
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0">
 							<children>
 								<TableView fx:id="processTBL" layoutY="-1.0" prefHeight="514.0" prefWidth="869.0">
 									<columns>
-										<TableColumn fx:id="ProcessNameCLN" prefWidth="205.0" text="Name" />
-										<TableColumn fx:id="PriorityCLN" prefWidth="77.0" text="Priority" />
-										<TableColumn fx:id="ProcessUserCLN" prefWidth="77.0" text="User" />
-										<TableColumn fx:id="ProcessStateCLN" prefWidth="77.0" text="State" />
-                              <TableColumn fx:id="ProcessPidCLN" prefWidth="77.0" text="PID" />
+										<TableColumn fx:id="processNameCLN" prefWidth="205.0" text="Name" />
+										<TableColumn fx:id="priorityCLN" prefWidth="77.0" text="Priority" />
+										<TableColumn fx:id="processUserCLN" prefWidth="77.0" text="User" />
+										<TableColumn fx:id="processStateCLN" prefWidth="77.0" text="State" />
+										<TableColumn fx:id="processPidCLN" prefWidth="77.0" text="PID" />
 									</columns>
 								</TableView>
-                        <Button fx:id="KillProcessBTN" layoutX="100.0" layoutY="513.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Kill Process" />
-                        <Button fx:id="UpdateProcessBTN" layoutY="513.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Update" />
+								<Button fx:id="killProcessBTN" layoutX="100.0" layoutY="513.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Kill Process" />
+								<Button fx:id="updateProcessBTN" layoutY="513.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Update" />
 							</children>
 						</AnchorPane>
 					</content>
@@ -34,25 +50,25 @@
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0">
 							<children>
 								<Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OS Manufacturer:" />
-								<Text fx:id="ManufacturerTX" layoutX="135.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+								<Text fx:id="manufacturerTX" layoutX="135.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
 								<Text layoutX="523.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family:" />
-								<Text fx:id="FamilyTX" layoutX="575.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
-								<Text fx:id="MemoryTX" layoutX="12.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="memory" />
+								<Text fx:id="familyTX" layoutX="575.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+								<Text fx:id="memoryTX" layoutX="12.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="memory" />
 								<Text layoutX="12.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory:" />
 								<Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Store:" />
-								<Text fx:id="FileStoreTX" layoutX="14.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="filestore" />
+								<Text fx:id="fileStoreTX" layoutX="14.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="filestore" />
 								<Text layoutX="261.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version:" />
-								<Text fx:id="VersionTX" layoutX="317.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+								<Text fx:id="versionTX" layoutX="317.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
 								<Text layoutX="14.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC Manufacturer:" />
 								<Text layoutX="360.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Model: " />
 								<Text layoutX="575.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serial Number: " />
-								<Text fx:id="PCManufacturerTX" layoutX="134.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
-								<Text fx:id="PCModelTX" layoutX="410.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
-								<Text fx:id="PCSerialNumberTX" layoutX="677.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
-								<Text fx:id="GraphicCardTX" layoutX="12.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="graphiccard" />
+								<Text fx:id="pcManufacturerTX" layoutX="134.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+								<Text fx:id="pcModelTX" layoutX="410.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+								<Text fx:id="pcSerialNumberTX" layoutX="677.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="null" />
+								<Text fx:id="graphicCardTX" layoutX="12.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="graphiccard" />
 								<Text layoutX="12.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graphic Card:" />
 								<Text layoutX="12.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Processor:" />
-								<Text fx:id="ProcessorTX" layoutX="12.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="processor" />
+								<Text fx:id="processorTX" layoutX="12.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="processor" />
 							</children>
 						</AnchorPane>
 					</content>

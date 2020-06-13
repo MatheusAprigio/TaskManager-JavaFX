@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -18,78 +19,87 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import oshi.SystemInfo;
 import oshi.hardware.GraphicsCard;
 import oshi.hardware.PhysicalMemory;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OSProcess;
+import oshi.software.os.OSService;
 
 
 public class SystemInfoController implements Initializable{
 
 	SystemInfo systemInfo = new SystemInfo();
-	Timer timer = new Timer();
 
 	@FXML
-	AnchorPane SystemInfoAP;
+	Text manufacturerTX;
 
 	@FXML
-	Text ManufacturerTX;
+	Text familyTX;
 
 	@FXML
-	Text FamilyTX;
+	Text memoryTX;
 
 	@FXML
-	Text MemoryTX;
+	Text fileStoreTX;
 
 	@FXML
-	Text FileStoreTX;
+	Text versionTX;
 
 	@FXML
-	Text VersionTX;
+	Text pcManufacturerTX;
 
 	@FXML
-	Text PCManufacturerTX;
+	Text pcModelTX;
 
 	@FXML
-	Text PCModelTX;
+	Text pcSerialNumberTX;
 
 	@FXML
-	Text PCSerialNumberTX;
+	Text graphicCardTX;
 
 	@FXML
-	Text GraphicCardTX;
-
-	@FXML
-	Text ProcessorTX;
+	Text processorTX;
 
 	@FXML
 	TableView<OSProcess> processTBL;
-
 	@FXML
-	TableColumn<OSProcess, String> ProcessNameCLN = new TableColumn<>("Name");
+	TableView<OSService> serviceTBL;
+	
+	
 	@FXML
-	TableColumn<OSProcess, Integer> PriorityCLN = new TableColumn<>("Priority");
+	TableColumn<OSProcess, String> processNameCLN = new TableColumn<>("Name");
 	@FXML
-	TableColumn<OSProcess, String> ProcessUserCLN = new TableColumn<>("User");
+	TableColumn<OSProcess, Integer> priorityCLN = new TableColumn<>("Priority");
 	@FXML
-	TableColumn<OSProcess, String> ProcessStateCLN = new TableColumn<>("State");
+	TableColumn<OSProcess, String> processUserCLN = new TableColumn<>("User");
 	@FXML
-	TableColumn<OSProcess, Integer> ProcessPidCLN = new TableColumn<>("PID");
-
+	TableColumn<OSProcess, String> processStateCLN = new TableColumn<>("State");
 	@FXML
-	Button KillProcessBTN;
+	TableColumn<OSProcess, Integer> processPidCLN = new TableColumn<>("PID");
+	
 	@FXML
-	Button UpdateProcessBTN;
-
+	TableColumn<OSService, String> serviceNameCLN = new TableColumn<>("Name");
+	@FXML
+	TableColumn<OSService, String> serviceStateCLN = new TableColumn<>("State");
+	@FXML
+	TableColumn<OSService, String> serviceIdCLN = new TableColumn<>("PID");
+	
+	@FXML
+	Button killProcessBTN;
+	@FXML
+	Button updateProcessBTN;
+	@FXML
+	Button updateServiceBTN;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		getSystemInfo();
 		getProcesses();
-
-		KillProcessBTN.setOnAction(new EventHandler<ActionEvent>() {
+		getServices();
+		
+		killProcessBTN.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				try {
 					killProcess();
@@ -98,10 +108,16 @@ public class SystemInfoController implements Initializable{
 				}
 			}
 		});
-		
-		UpdateProcessBTN.setOnAction(new EventHandler<ActionEvent>() {
+
+		updateProcessBTN.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				updateProcess();
+			}
+		});
+		
+		updateServiceBTN.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				updateService();
 			}
 		});
 	}
@@ -111,43 +127,68 @@ public class SystemInfoController implements Initializable{
 		List<OSProcess> serviceList = systemInfo.getOperatingSystem().getProcesses();
 		ObservableList<OSProcess> observableList = FXCollections.observableArrayList();
 
-		for(OSProcess osService : serviceList) {
-			observableList.add(osService);
+		for(OSProcess osProcess : serviceList) {
+			observableList.add(osProcess);
 		}
 
 		formatTableProcesses();
 
 		processTBL.setItems(observableList);
 	}
+	
+	public void getServices(){
 
+		List<OSService> serviceList = Arrays.asList(systemInfo.getOperatingSystem().getServices());
+		ObservableList<OSService> observableList = FXCollections.observableArrayList();
+
+		for(OSService osService : serviceList) {
+			observableList.add(osService);
+		}
+
+		formatTableServices();
+
+		serviceTBL.setItems(observableList);
+	}
+	
 	public void formatTableProcesses(){
-		ProcessNameCLN.setCellValueFactory(cellData -> 
+		processNameCLN.setCellValueFactory(cellData -> 
 		new SimpleStringProperty(cellData.getValue().getName()));
 
-		PriorityCLN.setCellValueFactory(cellData -> 
+		priorityCLN.setCellValueFactory(cellData -> 
 		new  SimpleIntegerProperty(cellData.getValue().getPriority()).asObject());
 
-		ProcessUserCLN.setCellValueFactory(cellData -> 
+		processUserCLN.setCellValueFactory(cellData -> 
 		new SimpleStringProperty(cellData.getValue().getUser()));
 
-		ProcessStateCLN.setCellValueFactory(cellData -> 
+		processStateCLN.setCellValueFactory(cellData -> 
 		new SimpleStringProperty(String.valueOf(cellData.getValue().getState())));
 
-		ProcessPidCLN.setCellValueFactory(cellData -> 
+		processPidCLN.setCellValueFactory(cellData -> 
 		new SimpleIntegerProperty(cellData.getValue().getProcessID()).asObject());
 	}
 
+	public void formatTableServices(){
+		serviceNameCLN.setCellValueFactory(cellData -> 
+		new SimpleStringProperty(cellData.getValue().getName()));
+		
+		serviceStateCLN.setCellValueFactory(cellData -> 
+		new SimpleStringProperty(String.valueOf(cellData.getValue().getState())));
+		
+		serviceIdCLN.setCellValueFactory(cellData -> 
+		new SimpleStringProperty(String.valueOf(cellData.getValue().getProcessID())));
+
+	}
 	private void getSystemInfo() {
-		ManufacturerTX.setText(systemInfo.getOperatingSystem().getManufacturer());
-		FamilyTX.setText(systemInfo.getOperatingSystem().getFamily());
-		VersionTX.setText(systemInfo.getOperatingSystem().getVersionInfo().toString());
-		FileStoreTX.setText(formatOsFileStore());
-		MemoryTX.setText(formatMemory());
-		PCManufacturerTX.setText(systemInfo.getHardware().getComputerSystem().getManufacturer());
-		PCModelTX.setText(systemInfo.getHardware().getComputerSystem().getModel());
-		PCSerialNumberTX.setText(systemInfo.getHardware().getComputerSystem().getSerialNumber());
-		GraphicCardTX.setText(formatGraphicCard()); 
-		ProcessorTX.setText(systemInfo.getHardware().getProcessor().toString());
+		manufacturerTX.setText(systemInfo.getOperatingSystem().getManufacturer());
+		familyTX.setText(systemInfo.getOperatingSystem().getFamily());
+		versionTX.setText(systemInfo.getOperatingSystem().getVersionInfo().toString());
+		fileStoreTX.setText(formatOsFileStore());
+		memoryTX.setText(formatMemory());
+		pcManufacturerTX.setText(systemInfo.getHardware().getComputerSystem().getManufacturer());
+		pcModelTX.setText(systemInfo.getHardware().getComputerSystem().getModel());
+		pcSerialNumberTX.setText(systemInfo.getHardware().getComputerSystem().getSerialNumber());
+		graphicCardTX.setText(formatGraphicCard()); 
+		processorTX.setText(systemInfo.getHardware().getProcessor().toString());
 	}
 
 	public String formatOsFileStore() {
@@ -194,11 +235,13 @@ public class SystemInfoController implements Initializable{
 			String cmd = "taskkill /F /PID " + PID;
 			Runtime.getRuntime().exec(cmd);
 		};
-		
+	}
+
+	void updateProcess() {
 		getProcesses();
 	}
 	
-	void updateProcess() {
-		getProcesses();
+	void updateService() {
+		getServices();
 	}
 }
