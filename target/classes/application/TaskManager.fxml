@@ -10,17 +10,21 @@
 	<children>
 		<TabPane prefHeight="594.0" prefWidth="869.0">
 			<tabs>
-				<Tab text="Processes">
+				<Tab text="Processes details">
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="503.0">
 							<children>
-								<TableView fx:id="processTBL" prefHeight="551.0" prefWidth="869.0">
+								<TableView fx:id="processTBL" layoutY="-1.0" prefHeight="514.0" prefWidth="869.0">
 									<columns>
 										<TableColumn fx:id="ProcessNameCLN" prefWidth="205.0" text="Name" />
 										<TableColumn fx:id="PriorityCLN" prefWidth="77.0" text="Priority" />
-                              <TableColumn fx:id="ProcessUserCLN" prefWidth="77.0" text="User" />			
+										<TableColumn fx:id="ProcessUserCLN" prefWidth="77.0" text="User" />
+										<TableColumn fx:id="ProcessStateCLN" prefWidth="77.0" text="State" />
+                              <TableColumn fx:id="ProcessPidCLN" prefWidth="77.0" text="PID" />
 									</columns>
 								</TableView>
+                        <Button fx:id="KillProcessBTN" layoutX="100.0" layoutY="513.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Kill Process" />
+                        <Button fx:id="UpdateProcessBTN" layoutY="513.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Update" />
 							</children>
 						</AnchorPane>
 					</content>
