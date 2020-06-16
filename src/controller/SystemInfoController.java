@@ -2,7 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -31,37 +34,31 @@ import oshi.software.os.OSService;
 public class SystemInfoController implements Initializable{
 
 	SystemInfo systemInfo = new SystemInfo();
-
+	SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+	
 	@FXML
 	Text manufacturerTX;
-
 	@FXML
 	Text familyTX;
-
 	@FXML
 	Text memoryTX;
-
 	@FXML
 	Text fileStoreTX;
-
 	@FXML
 	Text versionTX;
-
 	@FXML
 	Text pcManufacturerTX;
-
 	@FXML
 	Text pcModelTX;
-
 	@FXML
 	Text pcSerialNumberTX;
-
 	@FXML
 	Text graphicCardTX;
-
 	@FXML
 	Text processorTX;
-
+	@FXML
+	Text bootTimeTX;
+	
 	@FXML
 	TableView<OSProcess> processTBL;
 	@FXML
@@ -189,6 +186,9 @@ public class SystemInfoController implements Initializable{
 		pcSerialNumberTX.setText(systemInfo.getHardware().getComputerSystem().getSerialNumber());
 		graphicCardTX.setText(formatGraphicCard()); 
 		processorTX.setText(systemInfo.getHardware().getProcessor().toString());
+		
+		Date bootTimeUnix = Date.from(Instant.ofEpochSecond(systemInfo.getOperatingSystem().getSystemBootTime()));
+		bootTimeTX.setText(dateFormat.format(bootTimeUnix));
 	}
 
 	public String formatOsFileStore() {

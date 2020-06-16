@@ -69,6 +69,8 @@
 								<Text layoutX="12.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graphic Card:" />
 								<Text layoutX="12.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Processor:" />
 								<Text fx:id="processorTX" layoutX="12.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="processor" />
+                        <Text fx:id="bootTimeTX" layoutX="491.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="boot" />
+                        <Text layoutX="410.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boot Time:" />
 							</children>
 						</AnchorPane>
 					</content>

@@ -16,6 +16,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 			Pane root = FXMLLoader.load(getClass().getResource("TaskManager.fxml")); 
 			Scene scene = new Scene(root);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("Task Manager - JavaFX");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 	}
